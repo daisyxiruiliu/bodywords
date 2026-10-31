@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="layout">
+  <!-- 左側：目錄 -->
+  <aside class="sidebar" id="tocPanel">
+    <h3>📚 目錄</h3>
+    <div class="upload-box">
+      <input type="file" id="fileInput" accept=".txt">
+      <div id="uploadStatus" class="muted small-text"></div>
+    </div>
+    <div id="bookList"></div>
+  </aside>
+
+  <!-- 中間：人形圖 / 對比視圖 -->
+  <section class="main-view">
+    <div class="view-header">
+      <button id="backBtn" class="btn small ghost hidden">← 返回</button>
+      <h2 id="viewTitle">請選擇或上傳一本書</h2>
+    </div>
+
+    <!-- 單圖視圖 -->
+    <div id="singleView" class="figure-stage">
+      <div id="figureWrap" class="figure-wrap"></div>
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <!-- 對比視圖（橫向切片 + 正態放大） -->
+    <div id="compareView" class="compare-view hidden">
+      <div class="compare-controls-wrap">
+        <button id="toggleControls" class="btn small ghost">收起選項 ▲</button>
+        <div id="compareControls" class="compare-controls">
+          <label>對比對象：</label>
+          <select id="compareType">
+            <option value="chapter">章節間對比</option>
+            <option value="character">人物間對比</option>
+          </select>
+          <div id="comparePick" class="compare-pick"></div>
+          <button id="compareBtn" class="btn small">生成對比</button>
+        </div>
+      </div>
+      <div id="compareStrip" class="compare-strip"></div>
+    </div>
+  </section>
+
+  <!-- 右側：範圍選擇（整本書/章節/人物 + 下拉） -->
+  <aside class="scope-panel" id="scopePanel">
+    <h3>🎯 範圍</h3>
+    <div class="scope-tabs">
+      <button class="tab active" data-scope="book">整本書</button>
+      <button class="tab" data-scope="chapter">章節</button>
+      <button class="tab" data-scope="character">人物</button>
+      <button class="tab" data-scope="compare">🩻 對比</button>
+    </div>
+    <div id="scopeSelector" class="scope-selector hidden"></div>
+  </aside>
+</div>
+
+<!-- 器官點擊彈窗 -->
+<div id="organModal" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="modalTitle"></h3>
+      <button id="modalClose" class="btn small ghost">✕</button>
+    </div>
+    <div id="modalBody" class="modal-body"></div>
+  </div>
+</div>
+{% endblock %}

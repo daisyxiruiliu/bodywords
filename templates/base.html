@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}BodyWords 身語集{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<nav class="topbar">
+  <div class="brand">🫀 BodyWords 身語集</div>
+  <div class="nav-actions">
+    <button id="langToggle" class="btn small">EN / 繁</button>
+    {% if session.admin %}
+      <a href="{{ url_for('admin_tokens') }}" class="btn small">🔑 鏈接管理</a>
+    {% endif %}
+    <a href="{{ url_for('logout') }}" class="btn small ghost">登出</a>
+  </div>
+</nav>
+<main>{% block content %}{% endblock %}</main>
+<div id="toast" class="toast"></div>
+<script>window.LANG = "{{ lang }}";</script>
+<script src="{{ url_for('static', filename='body-path.js') }}"></script>
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

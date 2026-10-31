@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="redeem-wrap">
+  <form method="post" class="login-card">
+    <h2>🎟️ 兌換訪問密鑰</h2>
+    <p class="muted">請輸入你收到的鏈接密鑰 / Enter your access key</p>
+    <input type="text" name="token" placeholder="密鑰 / Access key" required autofocus>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <button type="submit" class="btn">驗證 / Verify</button>
+  </form>
+</div>
+{% endblock %}

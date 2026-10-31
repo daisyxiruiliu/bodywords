@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="tokens-wrap">
+  <h2>🔑 分享鏈接管理</h2>
+  <p class="muted">生成帶密鑰的鏈接，只有拿到鏈接的人可以訪問本站。可隨時作廢。</p>
+  <form method="post" class="token-form">
+    <input type="text" name="note" placeholder="備註（給誰用的）">
+    <button type="submit" class="btn">生成新鏈接</button>
+  </form>
+  <table class="token-table">
+    <tr><th>分享鏈接（直接發給朋友）</th><th>備註</th><th>操作</th></tr>
+    {% for token, info in tokens.items() %}
+    <tr>
+      <td><code>{{ request.host_url }}?t={{ token }}</code></td>
+      <td>{{ info.note }}</td>
+      <td>
+        <form method="post" action="{{ url_for('revoke_token', token=token) }}" class="inline">
+          <button class="btn small danger">作廢</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  <p class="muted">朋友打開鏈接即自動獲得訪問權（存於其瀏覽器 30 天）。作廢後立即失效。</p>
+  <p class="muted">無鏈接者只會看到「404 Not Found」空白頁，無法得知網站內容，搜索引擎也不會收錄。</p>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="login-wrap">
+  <form method="post" class="login-card">
+    <h2>� 私人區域</h2>
+    <p class="muted">此內容僅限受邀者訪問<br>Private area — invited guests only</p>
+    <input type="password" name="password" placeholder="密碼 / Password" autofocus required>
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <button type="submit" class="btn">進入 / Enter</button>
+    <p class="muted small-text">持有邀請鏈接？<a href="/redeem" style="color:var(--accent)">點此兌換</a></p>
+  </form>
+</div>
+{% endblock %}
